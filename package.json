@@ -100,7 +100,7 @@
     "ignore": [
       "/dist/**/*.js",
       "/package/**/*.js",
-      "/src/vendor/polyfills/**/*.js"
+      "/src/ch/vendor/polyfills/**/*.js"
     ]
   },
   "jest": {
