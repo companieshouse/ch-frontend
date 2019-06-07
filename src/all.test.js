@@ -50,15 +50,7 @@ describe('GOV.UK Frontend', () => {
 
       // Ensure GOV.UK Frontend exports the expected components
       expect(components).toEqual([
-        'Accordion',
-        'Button',
-        'Details',
-        'CharacterCount',
-        'Checkboxes',
-        'ErrorSummary',
-        'Header',
-        'Radios',
-        'Tabs'
+        'Header'
       ])
     })
     it('exported Components can be initialised', async () => {
