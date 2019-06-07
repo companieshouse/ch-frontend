@@ -1,4 +1,4 @@
-import { nodeListForEach } from './common'
+// import { nodeListForEach } from './common'
 import Header from './components/header/header'
 
 function initAll (options) {
