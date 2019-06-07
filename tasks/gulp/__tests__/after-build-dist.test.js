@@ -54,24 +54,24 @@ describe('dist/', () => {
     })
   })
 
-  describe(`govuk-frontend-${version}.min.css`, () => {
-    const stylesheet = lib.readFileContents(path.join(configPaths.dist, `govuk-frontend-${version}.min.css`))
+  describe(`ch-frontend-${version}.min.css`, () => {
+    const stylesheet = lib.readFileContents(path.join(configPaths.dist, `ch-frontend-${version}.min.css`))
 
     it('should not contain current media query displayed on body element', () => {
       expect(stylesheet).not.toMatch(/body:before{content:/)
     })
   })
 
-  describe(`govuk-frontend-ie8-${version}.min.css`, () => {
-    const stylesheet = lib.readFileContents(path.join(configPaths.dist, `govuk-frontend-ie8-${version}.min.css`))
+  describe(`ch-frontend-ie8-${version}.min.css`, () => {
+    const stylesheet = lib.readFileContents(path.join(configPaths.dist, `ch-frontend-ie8-${version}.min.css`))
 
     it('should not contain current media query displayed on body element', () => {
       expect(stylesheet).not.toMatch(/body:before{content:/)
     })
   })
 
-  describe(`govuk-frontend-${version}.min.js`, () => {
-    const javascript = lib.readFileContents(path.join(configPaths.dist, `govuk-frontend-${version}.min.js`))
+  describe(`ch-frontend-${version}.min.js`, () => {
+    const javascript = lib.readFileContents(path.join(configPaths.dist, `ch-frontend-${version}.min.js`))
 
     it('should have the correct version name', () => {
       expect(javascript).toBeTruthy()

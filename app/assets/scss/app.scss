@@ -1,5 +1,6 @@
 $govuk-show-breakpoints: true;
 
-@import "../../../src/all";
+@import "node_modules/govuk-frontend/all";
+@import "../../../src/ch/all";
 @import "partials/app";
 @import "partials/banner";
