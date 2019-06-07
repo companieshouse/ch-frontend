@@ -8,11 +8,13 @@
   "config": "config/",
   "dist": "dist/",
   "node_modules": "node_modules/",
-  "package": "package/",
+  "govukFrontend": "node_modules/govuk-frontend/",
+  "govukFrontendComponents": "node_modules/govuk-frontend/components",
+  "package": "package/ch/",
   "public": "public/",
   "sassdoc": "sassdoc/",
   "src": "src/",
-    "components": "src/components/",
+    "components": "src/ch/components/",
   "ports": {
     "app": 3000,
     "test": 8888

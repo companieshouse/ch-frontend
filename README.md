@@ -1,31 +1,30 @@
-GOV.UK Frontend ·
-[![Build Status](https://travis-ci.org/alphagov/govuk-frontend.svg?branch=master)](https://travis-ci.org/alphagov/govuk-frontend)
+Companies House Frontend ·
+[![Build Status](https://travis-ci.org/companieshouse/ch-frontend.svg?branch=master)](https://travis-ci.org/companieshouse/ch-frontend)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 =====================
 
-GOV.UK Frontend contains the code you need to start building a user interface
-for government platforms and services.
+Companies House Frontend contains the code you need to build a user interface using components
+designed specifically for Companies House platforms and services. Companies House Frontend is a counterpart to the Companies House Frontend codebase and both are required in order to build a complete user interface.
 
-See live examples of GOV.UK Frontend components, and guidance on when to use
-them in your service, in the [GOV.UK Design
-System](https://design-system.service.gov.uk/).
+See live examples of Companies House Frontend components, and guidance on when to use
+them in your service, in the [Companies House Design
+System](https://ch-design-system.herokuapp.com/).
 
 ## Contact the team
 
-GOV.UK Frontend is maintained by a team at Government Digital Service. If you want to know more about GOV.UK Frontend, please email the [Design System
-team](mailto:govuk-design-system-support@digital.cabinet-office.gov.uk) or get in touch with them on [Slack](https://ukgovernmentdigital.slack.com/messages/govuk-design-system).
+Companies House Frontend is maintained by the interaction design team. If you want to know more about Companies House Frontend, please contact a member of that team by email or Slack.
 
 ## Quick start
 
-There are 2 ways to start using GOV.UK Frontend in your app.
+There are 2 ways to start using Companies House Frontend in your app.
 
 Once installed, you will be able to use the code from the examples in the
-[GOV.UK Design System](https://design-system.service.gov.uk/)
+[Companies House Design System](https://ch-design-system.herokuapp.com/)
 in your service.
 
 ### 1. Install with npm (recommended)
 
-We recommend [installing GOV.UK Frontend using node package manager
+We recommend [installing Companies House Frontend using node package manager
 (npm)](docs/installation/installing-with-npm.md).
 
 ### 2. Install by using compiled files
@@ -35,10 +34,10 @@ GitHub](docs/installation/installing-from-dist.md).
 
 ## Browser support
 
-GOV.UK Frontend will allow you to build services that comply with the [guidance
+Companies House Frontend will allow you to build services that comply with the [guidance
 in the Service Manual][service-manual-browsers].
 
-Currently, GOV.UK Frontend officially supports the following browsers:
+Currently, Companies House Frontend officially supports the following browsers:
 
 | Operating system | Browser                                | Support     |
 |----------------- |----------------------------------------|-------------|
@@ -61,7 +60,7 @@ they do in other modern browsers.
 'Functional' means the components may not look perfect in the given browser, but
 must still be usable without errors and without 'looking broken'.
 
-If you are including GOV.UK Frontend as part of a stylesheet that you are
+If you are including Companies House Frontend as part of a stylesheet that you are
 generating in your application's build pipeline, you will need to [generate and
 include a separate stylesheet in order to support Internet Explorer
 8](docs/installation/supporting-internet-explorer-8.md).
@@ -70,10 +69,10 @@ include a separate stylesheet in order to support Internet Explorer
 
 ## Assistive technology support
 
-GOV.UK Frontend will allow you to build services that comply with the [guidance
+Companies House Frontend will allow you to build services that comply with the [guidance
 in the Service Manual][service-manual-assistive-technologies].
 
-Currently, GOV.UK Frontend officially supports the following assistive technologies:
+Currently, Companies House Frontend officially supports the following assistive technologies:
 
 | Software                 | Version        | Type               | Browser                   |
 |--------------------------|----------------|--------------------|---------------------------|
@@ -109,5 +108,5 @@ Open Government 3.0 licence.
 
 ## Contribution guidelines
 
-If you want to help us build GOV.UK Frontend, view our [contribution
+If you want to help us build Companies House Frontend, view our [contribution
 guidelines](CONTRIBUTING.md).

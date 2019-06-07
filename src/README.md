@@ -2,8 +2,8 @@
 
 ## Structure
 
-GOV.UK Frontend is broken into a number of layers in order to help provide a
-logical structure, loosely following the conventions of [ITCSS].
+Companies House Frontend is broken into a number of layers in order to help provide a
+logical structure, loosely following the conventions of [ITCSS]: (http://www.creativebloq.com/web-design/manage-large-css-projects-itcss-101517528).
 
 1. [Settings](#settings)
 2. [Tools](#tools)
@@ -69,7 +69,3 @@ and override all other layers. Rules in this layer will generally be marked as
 
 Class names within this layer use an additional prefix `-!-`, for example
 `.govuk-!-font-width-regular`.
-
-
-
-[ITCSS]: (http://www.creativebloq.com/web-design/manage-large-css-projects-itcss-101517528)

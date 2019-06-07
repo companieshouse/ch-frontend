@@ -4,20 +4,20 @@
 {% extends "full-width.njk" %}
 
 {% set bodyClasses %}
-  language-markup
+language-markup
 {% endset %}
 
 {% set componentName = componentPath %}
 {% set componentNameHuman = componentName | replace("-", " ") %}
 
 {% set htmlMarkup %}
-  {% include componentName +"/"+ componentName +".njk" ignore missing %}
+{% include componentName + "/" + componentName + ".njk" ignore missing %}
 {% endset %}
 
 {% block beforeContent %}
   {{ govukBreadcrumbs({
     "items": [
-    { text: 'GOV.UK Frontend', href: '/' + legacyQuery },
+    { text: 'Companies House Frontend', href: '/' + legacyQuery },
     { text: componentNameHuman | capitalize }
     ]
   }) }}

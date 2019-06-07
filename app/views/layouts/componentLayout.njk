@@ -2,15 +2,13 @@
 
 {% set htmlClasses = "app-no-canvas-background" %}
 
-{% block pageTitle %}GOV.UK Frontend{% endblock %}
+{% block pageTitle %}Companies House Frontend{% endblock %}
 
 {# Turn the header and footer off #}
 {% block header %}
   {% include "../partials/banner.njk" %}
 {% endblock %}
-{% block footer %}
-  {{ govukFooter({}) }}
-{% endblock %}
+{% block footer %}{% endblock %}
 
 {% block bodyEnd %}
   {{ super() }}

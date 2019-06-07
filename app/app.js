@@ -18,6 +18,8 @@ const appViews = [
   configPaths.views,
   configPaths.examples,
   configPaths.fullPageExamples,
+  configPaths.govukFrontend,
+  configPaths.govukFrontendComponents,
   configPaths.components,
   configPaths.src,
   configPaths.node_modules
@@ -64,7 +66,11 @@ module.exports = (options) => {
   // serve legacy code from node node modules
   app.use('/vendor/govuk_template/', express.static('node_modules/govuk_template_jinja/assets/'))
 
-  app.use('/assets', express.static(path.join(configPaths.src, 'assets')))
+  app.use('/assets', express.static(path.join(configPaths.src, 'ch/assets')))
+  app.use('/vendor/govuk-frontend/', express.static(path.join(__dirname, 'node_modules', 'govuk-frontend', 'assets')))
+
+  // Serve govuk-frontend in /public
+  app.use('/node_modules/govuk-frontend', express.static(path.join(__dirname, 'node_modules', 'govuk-frontend')))
 
   // Turn form POSTs into data that can be used for validation.
   app.use(bodyParser.urlencoded({ extended: true }))
@@ -163,7 +169,7 @@ module.exports = (options) => {
     let macroParameters = JSON.stringify(exampleConfig.data, null, '\t')
 
     res.locals.componentView = env.renderString(
-      `{% from '${componentName}/macro.njk' import ${macroName} %}
+      `{% from 'ch/components/${componentName}/macro.njk' import ${macroName} %}
       {{ ${macroName}(${macroParameters}) }}`
     )
 
