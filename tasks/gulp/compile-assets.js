@@ -19,7 +19,7 @@ const cssnano = require('cssnano')
 const postcsspseudoclasses = require('postcss-pseudo-classes')({
   // Work around a bug in pseudo classes plugin that badly transforms
   // :not(:whatever) pseudo selectors
-  blacklist: [':not(', ':disabled)', ':last-child)', ':focus)']
+  blacklist: [':not(', ':disabled)', ':last-child)', ':focus)', ':active)', ':hover)']
 })
 
 // Compile CSS and JS task --------------
@@ -27,6 +27,16 @@ const postcsspseudoclasses = require('postcss-pseudo-classes')({
 
 // check if destination flag is dist
 const isDist = taskArguments.destination === 'dist' || false
+
+// Set the destination
+const destinationPath = function () {
+  // Public & Dist directories do no need namespaced with `govuk`
+  if (taskArguments.destination === 'dist' || taskArguments.destination === 'public') {
+    return taskArguments.destination
+  } else {
+    return `${taskArguments.destination}/govuk/`
+  }
+}
 
 const errorHandler = function (error) {
   // Log the error to the console
@@ -41,7 +51,7 @@ const compileStyleshet = isDist ? configPaths.src + 'all.scss' : configPaths.app
 const compileOldIeStyleshet = isDist ? configPaths.src + 'all-ie8.scss' : configPaths.app + 'assets/scss/app-ie8.scss'
 
 gulp.task('scss:compile', () => {
-  let compile = gulp.src(compileStyleshet)
+  const compile = gulp.src(compileStyleshet)
     .pipe(plumber(errorHandler))
     .pipe(sass())
     // minify css add vendor prefixes and normalize to compiled css
@@ -63,7 +73,7 @@ gulp.task('scss:compile', () => {
     ))
     .pipe(gulp.dest(taskArguments.destination + '/'))
 
-  let compileOldIe = gulp.src(compileOldIeStyleshet)
+  const compileOldIe = gulp.src(compileOldIeStyleshet)
     .pipe(plumber(errorHandler))
     .pipe(sass())
     // minify css add vendor prefixes and normalize to compiled css
@@ -141,7 +151,8 @@ gulp.task('scss:compile', () => {
 // --------------------------------------
 gulp.task('js:compile', () => {
   // for dist/ folder we only want compiled 'all.js' file
-  let srcFiles = isDist ? configPaths.src + 'all.js' : configPaths.src + '**/*.js'
+  const srcFiles = isDist ? configPaths.src + 'all.js' : configPaths.src + '**/*.js'
+
   return gulp.src([
     srcFiles,
     '!' + configPaths.src + '**/*.test.js'
@@ -164,5 +175,5 @@ gulp.task('js:compile', () => {
       })
     ))
     .pipe(eol())
-    .pipe(gulp.dest(taskArguments.destination + '/'))
+    .pipe(gulp.dest(destinationPath))
 })

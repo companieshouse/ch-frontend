@@ -2,21 +2,468 @@
 
 ## Unreleased
 
-See the [versioning documentation for how to update this changelog](./docs/contributing/versioning.md#updating-changelog).
+## 3.3.0 (Feature release)
 
-🆕 New features:
+### New features
 
-- Support custom text on meta title 
+#### Allow `lang` to be set on `<title>` and `<main>` of template
 
-  Hard coded 'Support Links' is replaced by `params.meta.visuallyHiddenTitle` this has a default off Support links.
+You can now set the [lang attribute](https://www.w3.org/International/questions/qa-html-language-declarations) in the title and main of page template.
 
-  ([PR #1387](https://github.com/alphagov/govuk-frontend/pull/1387))
+This will help with scenarios where some of the elements, such as navigation and footer, are in English whereas the title and page content are in a different language.
 
-🔧 Fixes:
+- [Pull request #1576: Allow `lang` to be set on title and main of template](https://github.com/alphagov/govuk-frontend/pull/1576).
 
-- Fixes the color of disabled secondary and warning button variants
+#### Add new override class to hide elements
 
-  ([PR #1392](https://github.com/alphagov/govuk-frontend/pull/1392))
+You can now use the `.govuk-!-display-none` override class to hide elements.
+
+- [Pull request #1586: Add display none override class](https://github.com/alphagov/govuk-frontend/pull/1586).
+
+#### Visual updates to the warning text component
+
+Align ‘Warning text’ icon with first line of the content fixing [#1352](https://github.com/alphagov/govuk-frontend/issues/1352) Some changes were made to the size and spacing of the icon to help with positioning.
+
+- [Pull request #1578: Change position and spacing relationship of warning text icon](https://github.com/alphagov/govuk-frontend/pull/1578)
+
+### Fixes
+- [Pull request #1574: Make form elements scale correctly when text resized by user](https://github.com/alphagov/govuk-frontend/pull/1574).
+- [Pull request #1584: Fix text resize issue with warning text icon](https://github.com/alphagov/govuk-frontend/pull/1584)
+- [Pull request #1570: Prevent inputs ending up off screen or obscured by keyboards when linking from the error summary to inputs within a large fieldset](https://github.com/alphagov/govuk-frontend/pull/1570)
+- [Pull request #1585: Explicitly set font weight on warning-text component](https://github.com/alphagov/govuk-frontend/pull/1585)
+- [Pull request #1587: Fix height and alignment issue within header in Chrome 76+](https://github.com/alphagov/govuk-frontend/pull/1587)
+- [Pull request #1589: Remove role="button" from header button](https://github.com/alphagov/govuk-frontend/pull/1589)
+- [Pull request #1595: Do not output conditionally revealed content for radios or checkboxes when it's empty](https://github.com/alphagov/govuk-frontend/pull/1595)
+- [Pull request #1594: Refactor handling of count message in character count Javascript](https://github.com/alphagov/govuk-frontend/pull/1594)
+- [Pull request #1609: Update hex value for secondary text to improve contrast](https://github.com/alphagov/govuk-frontend/pull/1609)
+
+## 3.2.0 (Feature release)
+
+### New features
+
+#### Add classes to the form group wrapper of the character count component
+
+You can now add classes to the form group wrapper of the character count component.
+
+```javascript
+govukCharacterCount({
+  formGroup: {
+    classes: 'app-character-count--custom-modifier'
+  }
+})
+```
+
+- [Pull request #1553: Include formGroup on character count and pass through to textarea to allow class to be added to character count form group](https://github.com/alphagov/govuk-frontend/pull/1553). Thanks to [Emma Lewis](https://github.com/LBHELewis).
+
+### Fixes
+
+- [Pull request #1548: Fix fieldset legend text clipping when using a custom or fallback font](https://github.com/alphagov/govuk-frontend/pull/1548).
+- [Pull request #1559: Stop IE8 from downloading GDS Transport font](https://github.com/alphagov/govuk-frontend/pull/1559).
+- [Pull request #1564: Ensure legacy styles do not override button active state](https://github.com/alphagov/govuk-frontend/pull/1564).
+
+## 3.1.0 (Feature release)
+
+### New features
+
+#### Add attributes to the fieldset on the date input component
+
+You can now pass attributes to add to the fieldset on the date input component.
+
+[Pull request #1541: Allow date input fieldset attributes to be set](https://github.com/alphagov/govuk-frontend/pull/1541). Thanks to [andrew-mcgregor](https://github.com/andrew-mcgregor) for raising this.
+
+#### Add ARIA role to the fieldset component
+
+You can now pass an ARIA role to the fieldset component.
+
+[Pull request #1541: Allow date input fieldset attributes to be set](https://github.com/alphagov/govuk-frontend/pull/1541).
+
+#### Add inputmode to the input component
+
+You can now pass [inputmode](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode) to the input component.
+
+```javascript
+govukInput({
+  inputmode: 'email'
+})
+```
+
+- [Pull request #1527: Add inputmode option to the input component](https://github.com/alphagov/govuk-frontend/pull/1527)
+
+
+### Fixes
+
+- [Pull request #1523: Improve accessibility of details component by polyfilling only where the native element is not available](https://github.com/alphagov/govuk-frontend/pull/1523).
+- [Pull request #1512: Update components to only output items when they are defined](https://github.com/alphagov/govuk-frontend/pull/1512).
+- [Pull request #1538: Simplify button types to avoid unnecessary type attribute](https://github.com/alphagov/govuk-frontend/pull/1538).
+- [Pull request #1542: Only default two thirds/one-third layout when footer has two sections](https://github.com/alphagov/govuk-frontend/pull/1542).
+
+## 3.0.0 (Breaking release)
+
+### Breaking changes
+You must make the following changes when you migrate to this release, or your service may break.
+
+#### Update file paths, attributes and class names
+To make sure GOV.UK Frontend's files do not conflict with your code, we've moved our package files into a directory called `govuk`.
+
+##### If you’re using Sass
+
+Add `govuk/` after `govuk-frontend/` to `@import` paths in your [Sass](https://sass-lang.com/) file.
+
+For example:
+
+```scss
+@import "node_modules/govuk-frontend/govuk/all";
+```
+If you’ve [added `node_modules/govuk-frontend` as a Sass include path](https://github.com/alphagov/govuk-frontend/blob/master/docs/installation/installing-with-npm.md#optional-resolving-scss-import-paths), add `govuk/` to your `@import` paths:
+
+```scss
+@import "govuk/all";
+```
+
+#####  If you’re using Javascript
+
+You must do the following.
+
+1. Update file paths.
+2. Update and add `data-module` attributes.
+3. Update CSS class names.
+
+###### Update file paths
+
+You must add `govuk/` to your import paths.
+
+If you're importing `node_modules/govuk-frontend/all.js`, change this import path to `node_modules/govuk-frontend/govuk/all.js`.
+
+If you’re importing a specific path, add `govuk/` after `govuk-frontend/`. For example, if you're importing the button component:
+
+```nunjucks
+import Button from 'govuk-frontend/govuk/components/button/button'
+```
+
+###### Update and add data-module attributes
+
+You do not need to do anything if you're using Nunjucks macros and the [`initAll`](https://github.com/alphagov/govuk-frontend/blob/master/docs/installation/installing-with-npm.md#option-1-include-javascript) function.
+
+If you are not using Nunjucks macros, add a `govuk-` prefix to `data-module` attribute values. For example:
+
+```html
+<div class="govuk-accordion" data-module="govuk-accordion">
+...
+</div>
+```
+
+The [button](https://design-system.service.gov.uk/components/button/) and [details](https://design-system.service.gov.uk/components/details/) components now also use the `data-module` attribute for initialisation. If you are not using Nunjucks macros, add:
+
+- `data-module="govuk-button"` to each `<button>` HTML tag
+- `data-module="govuk-details"` to each `<details>` HTML tag
+
+If you're using your own JavaScript code to initialise components, add a `govuk-` prefix to any selectors that find components using the `data-module` attribute.
+
+[Pull request #1443: Ensure GOV.UK Frontend component selectors cannot conflict when initialised](https://github.com/alphagov/govuk-frontend/pull/1443)
+
+###### Update CSS class names
+
+You do not need to do anything if you're using Nunjucks.
+
+If you're using HTML or custom JavaScript, change:
+
+- `js-character-count` to `govuk-js-character-count`
+- `js-header-toggle` in the GOV.UK Frontend header component to `govuk-js-header-toggle`
+
+[Pull request #1444: Renames `js-` css prefix to `govuk-js-`](https://github.com/alphagov/govuk-frontend/pull/1444)
+
+##### If you’re using Nunjucks
+
+1. Change the list of paths in `nunjucks.configure` so that the only GOV.UK Frontend path is `node_modules/govuk-frontend/`:
+
+```nunjucks
+nunjucks.configure([
+  "node_modules/govuk-frontend/"
+])
+```
+
+2. If you've extended the [page template](https://design-system.service.gov.uk/styles/page-template/), add `govuk/` to the template path:
+
+```nunjucks
+{% extends "govuk/template.njk" %}
+```
+
+3. Change the import paths in your components so they include `govuk/components/`. For example:
+
+```nunjucks
+{% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
+```
+
+##### Update asset paths
+
+In the assets path, add `govuk/` after `govuk-frontend/`:
+
+`/node_modules/govuk-frontend/govuk/assets`
+
+If your code uses Express.js, you must also use the following code in your configuration file:
+
+```javascript
+app.use('/assets', express.static(path.join(__dirname, '/node_modules/govuk-frontend/govuk/assets')))
+```
+Pull requests:
+
+- [#1458: Namespace nunjucks and components](https://github.com/alphagov/govuk-frontend/pull/1458)
+- [#1467: Update the main entry point in package.json](https://github.com/alphagov/govuk-frontend/pull/1467)
+
+#### Migrate to the new accessible focus states
+
+The focus state of components now meets the new WCAG 2.1 level AA requirements.
+
+You must [update your component’s focus state](https://design-system.service.gov.uk/get-started/focus-states/) to make your design consistent with our new focus styles.
+
+If you've extended or created components, you can no longer use the `govuk-focusable` or `govuk-focusable-fill` Sass mixins.
+
+If you're using `govuk-focusable`, you must remove it. There’s no direct replacement, so you must [use our Sass variables to make your components consistent](https://design-system.service.gov.uk/get-started/focus-states/#make-other-focusable-elements-accessible) with GOV.UK Frontend.
+
+If you're using `govuk-focusable-fill`, include the `govuk-focused-text` mixin inside your component's `:focus` selector. For example:
+
+```scss
+.app-component:focus {
+  @include govuk-focused-text;
+}
+```
+
+Pull requests:
+
+- [#1309: Update links (and things that look like links) to use the new focus style](https://github.com/alphagov/govuk-frontend/pull/1309)
+- [#1312: Update form inputs focus to comply with WCAG 2.1](https://github.com/alphagov/govuk-frontend/pull/1312)
+- [#1313: Add new focus style to buttons](https://github.com/alphagov/govuk-frontend/pull/1315)
+- [#1321: Update footer links to use new focus style](https://github.com/alphagov/govuk-frontend/pull/1321)
+- [#1324: Update accordion to use new WCAG 2.1 compliant focus style](https://github.com/alphagov/govuk-frontend/pull/1324)
+- [#1326: Update tabs component to WCAG 2.1 compliant focus style](https://github.com/alphagov/govuk-frontend/pull/1326)
+- [#1361: Remove `govuk-focusable`, `govuk-focusable-fill` mixins, introduce `govuk-focus-text` mixin](https://github.com/alphagov/govuk-frontend/pull/1361)
+
+
+#### Update colours
+
+You can now use the following new colour variables that we've added to the [colour palette](https://design-system.service.gov.uk/styles/colour#main-colours):
+
+- dark-blue
+- dark-grey
+- mid-grey
+- light-grey
+
+5 Sass colour variables no longer exist. Replace the following colour variables if you're using Sass:
+
+Colour variable removed|Suggested replacement
+| --- | --- |
+bright-red|red
+grey-1|dark-grey
+grey-2|mid-grey
+grey-3|light-grey
+grey-4|light-grey
+
+You should check the [contrast ratio of your colours](https://design-system.service.gov.uk/styles/colour#colour-contrast).
+
+If you're not using Sass, change the values of the following colours:
+
+Colour name|Old value|Replace with
+| --- | --- | --- |
+purple|#2e358b|#4c2c92
+red|#b10e1e|#d4351c
+yellow|#ffbf47|#ffdd00
+green|#006435|#00703c
+grey-2|#bfc1c3|#b1b4b6
+grey-3|#dee0e2|#f3f2f1
+grey-4|#f8f8f8|#f3f2f1
+light-blue|#2b8cc4|#5694ca
+blue|#005ea5|#1d70b8
+bright-red|#df3034|#d4351c
+
+We've also changed the background of the following components:
+
+- buttons - `green` instead of a custom green
+- confirmation panels - `green` instead of `turquoise`
+- links in their hover state - `dark-blue` instead of `light-blue`
+
+If you're using legacy projects like GOV.UK Elements, you can keep your current colours by [turning on compatibility mode](https://github.com/alphagov/govuk-frontend/blob/master/docs/installation/compatibility.md).
+
+Read our [blog post about why we changed the colour palette](https://designnotes.blog.gov.uk/2019/07/29/weve-updated-the-gov-uk-colours-and-font/)
+
+[Pull request #1288: Update colour palette](https://github.com/alphagov/govuk-frontend/pull/1288).
+
+#### Check the new version of the font
+
+The size and baseline of the Design System's font are now more consistent with other fonts. Text now aligns vertically in text boxes without you needing to adjust it.
+
+If you've extended or created components, you should check that your text is still vertically aligned correctly.
+
+If you're using GOV.UK Frontend and [GOV.UK Template](https://github.com/alphagov/govuk_template), you can [turn on compatibility mode](https://github.com/alphagov/govuk-frontend/blob/master/docs/installation/compatibility.md) to keep using the font from GOV.UK Template.
+
+Pull requests:
+
+- [#1434: Update font to use v2 of GOV.UK Transport font](https://github.com/alphagov/govuk-frontend/pull/1434)
+- [#1441: Removing font style adjustments](https://github.com/alphagov/govuk-frontend/pull/1441)
+
+#### Update links from error summary components to radios and checkboxes
+
+If you've linked from an error summary component to the first input in a [radios](https://design-system.service.gov.uk/components/radios/) or [checkboxes](https://design-system.service.gov.uk/components/checkboxes/) component, the link will no longer work.
+
+This is because the `id` of the first input no longer has the suffix `-1`.
+
+If there are links back to radios or checkboxes components in your error summary component, remove `-1` from the end of the `href` attribute.
+
+[Pull request #1426: Make radios and checkboxes components easier to link to from error summary](https://github.com/alphagov/govuk-frontend/pull/1426)
+
+#### Update the markup for tabs
+
+You do not need to do anything if you're using Nunjucks macros.
+
+If you are not using Nunjucks macros, remove the `govuk-tabs__tab--selected` class from the first tab's link, then add the `govuk-tabs__list-item--selected` class to that link's parent list item.
+
+For example:
+
+```html
+<li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+  <a class="govuk-tabs__tab" href="#tab1">
+    Tab 1
+  </a>
+</li>
+```
+
+[Pull request #1496: Update the focus state for tabs](https://github.com/alphagov/govuk-frontend/pull/1443)
+
+#### Update start button icon
+
+[Start buttons](https://design-system.service.gov.uk/components/button/#start-buttons) have a new icon. Your start buttons will lose their current icons unless you replace the old icon with the new one.
+
+If you're using Nunjucks:
+
+- set the `isStartButton` option to `true`
+- remove the `.govuk-button--start` class
+
+For example:
+
+```javascript
+govukButton({
+  text: "Start now",
+  href: "#",
+  isStartButton: true
+})
+```
+
+If you're using HTML, add the SVG code from the [start button example in the Design System](https://design-system.service.gov.uk/components/button/#start-buttons).
+
+[Pull request #1341: Add new start button icon](https://github.com/alphagov/govuk-frontend/pull/1341)
+
+#### Adjust text alignment in tables
+
+Text now aligns to the top of table cells. If you've used a different alignment in a table, you should use your own CSS styles to keep the alignment the same.
+
+For example, to align text in the centre:
+
+```scss
+.app-table--vertical-align-middle .govuk-table__header,
+.app-table--vertical-align-middle .govuk-table__cell {
+  vertical-align: middle;
+  ...
+}
+```
+
+[Pull request #1345: Set 'vertical-align:top' positioning on table headers and cells](https://github.com/alphagov/govuk-frontend/pull/1345)
+
+#### Replace Sass mixins in grids
+
+If you're using the `@govuk-grid-column` Sass mixin to create custom grid classes, you must remove the `$class` parameter.
+
+If you're passing a class name, put the mixin inside your selector. For example:
+
+```scss
+.your-class-name {
+  @include govuk-grid-column(...)
+}
+```
+
+You can no longer use the `govuk-grid-row` mixin. You can replace it with the `.govuk-grid-row` class in your HTML.
+
+You must also replace calls to the `grid-width` mixin with calls to the `govuk-grid-width` mixin.
+
+Pull requests:
+
+- [#1376: Remove $class param from @govuk-grid-column mixin](https://github.com/alphagov/govuk-frontend/pull/1376)
+- [#1342: Remove grid-width mixin](https://github.com/alphagov/govuk-frontend/pull/1342)
+- [#1343: Removes govuk-grid-row mixin](https://github.com/alphagov/govuk-frontend/pull/1343)
+
+#### Rename the border width variable
+
+If you use Sass and you’ve extended or created components that use the border width variable, rename `$govuk-border-width-mobile` to `$govuk-border-width-narrow`.
+
+[Pull request #1287: Rename border-width-mobile to reflect how it's used](https://github.com/alphagov/govuk-frontend/pull/1287)
+
+### New features
+
+#### Add attributes to table headings
+
+You can now add attributes like classes, rowspan and colspan to table row headers.
+
+[Pull request #1367: Allow for classes, rowspan, colspan and attributes on row headers](https://github.com/alphagov/govuk-frontend/pull/1367). Thanks to [edwardhorsford](https://github.com/edwardhorsford).
+
+
+#### Use page wrapper auto spacing
+
+You can now add the `.govuk-main-wrapper--auto-spacing` modifier class to your `<main>` element to add responsive padding to the top and bottom of the page.
+
+This will add the correct amount of padding depending on if there are elements above the `<main>` element inside the `govuk-width-container` wrapper. Elements above the `<main>` element could include a back link or breadcrumb component.
+
+If you need to control the spacing manually, use the `.govuk-main-wrapper--l` modifier instead.
+
+The `govuk-main-wrapper` and `govuk-main-wrapper--l` Sass mixins are now deprecated. [Contact us](https://design-system.service.gov.uk/get-in-touch/) if you need to continue using these mixins.
+
+[Pull request #1493: Add automatic vertical spacing modifier for main wrapper](https://github.com/alphagov/govuk-frontend/pull/1493)
+
+#### GDS Transport now falls back to Arial in Internet Explorer 8 (IE8)
+
+IE8 will now use Arial instead of GDS Transport.
+
+This is because IE8 requires a very large Embedded Open Type (.eot) font file for external fonts. Arial will take less time to render for IE8 users, who are likely to be on older computers.
+
+[Pull request #1434: Update font to use v2 of GOV.UK Transport font](https://github.com/alphagov/govuk-frontend/pull/1434). Thanks to [@Nooshu](https://github.com/Nooshu).
+
+### Fixes
+
+- [Pull request #1310: The border on error summaries is now the correct width on mobile.
+GOV.UK Template's focused link colour no longer overrides GOV.UK Frontend](https://github.com/alphagov/govuk-frontend/pull/1310).
+- [Pull request #1316: Checkboxes and radios no longer have a transparent outline - because it's no longer needed to fix custom focus state colours](https://github.com/alphagov/govuk-frontend/pull/1316).
+- [Pull request #1324: There’s no longer an outline when a user focuses an accordion element in Firefox](https://github.com/alphagov/govuk-frontend/pull/1324).
+- [Pull request #1330: We've changed the spacing around lists in tabs on mobile and with JavasScript disabled, so they're consistent with other lists](https://github.com/alphagov/govuk-frontend/pull/1330).
+- [Pull request #1351: You can now use HTML elements in the labels for tabs](https://github.com/alphagov/govuk-frontend/pull/1351).
+- [Pull request #1353: Example HTML code in the Design System now has correct indenting](https://github.com/alphagov/govuk-frontend/pull/1353).
+- [Pull request #1368: We’ve clarified how you should use `productName` and `serviceName` in the header component](https://github.com/alphagov/govuk-frontend/pull/1368) - thanks to [@edwardhorsford](https://github.com/edwardhorsford).
+- [Pull request #1359: Users can now use the Tab key to highlight tabs in IE8](https://github.com/alphagov/govuk-frontend/pull/1359).
+- [Pull request #1370: Each submit button on a page now has its own double-click timer, so clicking one button will not disable the other buttons](https://github.com/alphagov/govuk-frontend/pull/1370).
+- [Pull request #1381: You can now import the Sass settings files without needing to import the other settings first](https://github.com/alphagov/govuk-frontend/pull/1381).
+- [Pull request #1442: Character count components are now hidden to assistive technologies when they're not visible](https://github.com/alphagov/govuk-frontend/pull/1442).
+- [Pull request #1434: The underline below links no longer sits too far down in Firefox](https://github.com/alphagov/govuk-frontend/pull/1434).
+- [Pull request #1435: When a user resubmits a form, the error summary is now correctly focused instead of the form](https://github.com/alphagov/govuk-frontend/pull/1435).
+- [Pull request #1473: We’ve removed icon-arrow-left.png and icon-important.png, because they were not used in GOV.UK Frontend](https://github.com/alphagov/govuk-frontend/pull/1473)
+- [Pull request #1497: Users can now conditionally reveal content on pages with multiple grouped radios](https://github.com/alphagov/govuk-frontend/pull/1497) - thanks to [@colinrotherham](https://github.com/colinrotherham) and [@frankieroberto](https://github.com/frankieroberto) for their help.
+
+## 2.13.0
+
+🆕 New features
+
+- You can now override the visually hidden 'Support links' text in the footer by
+setting `meta.visuallyHiddenTitle`.
+
+  ([Pull request #1387](https://github.com/alphagov/govuk-frontend/pull/1387))
+
+🔧 Fixes
+
+- Secondary buttons and warning buttons now have the correct background colour
+when they're disabled.
+
+  ([Pull request #1392](https://github.com/alphagov/govuk-frontend/pull/1392))
+
+- The crown logo image in the header now:
+  - has height and width attributes set
+  - aligns better with 'GOV.UK' in IE8
+
+  ([Pull request #1419](https://github.com/alphagov/govuk-frontend/pull/1419))
 
 ## 2.12.0
 

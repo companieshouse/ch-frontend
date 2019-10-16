@@ -1,22 +1,20 @@
-{% extends "govuk_template_jinja/views/layouts/govuk_template.html" %}
+---
+scenario:
+  As part of an online service you are asked to provide details for the
+  applicant.
+notes: >-
+  This example shows GOV.UK Frontend used alongside our 'legacy' frontend
+  frameworks. The full name field, and links within the header and footer have
+  known accessibility issues.
+---
+
+{% extends "legacy.njk" %}
 
 {% from "back-link/macro.njk" import govukBackLink %}
 {% from "date-input/macro.njk" import govukDateInput %}
 {% from "button/macro.njk" import govukButton %}
 
-{% set asset_path = "/vendor/govuk_template/" %}
-{% set homepage_url = "/" %}
-{% set pageTitle = "Applicant details" %}
-{% block pageTitle %}{{ "Error: " if errors }}GOV.UK - {{ pageTitle }}{% endblock %}
-
-{% block head %}
-  <!--[if !IE 8]><!-->
-    <link rel="stylesheet" href="/public/app-legacy.css">
-  <!--<![endif]-->
-  <!--[if IE 8]>
-    <link rel="stylesheet" href="/public/app-legacy-ie8.css">
-  <![endif]-->
-{% endblock %}
+{% set page_title = "Applicant details" %}
 
 {% block content %}
   <main id="content" role="main">
@@ -48,7 +46,7 @@
         {% endif %}
 
         <h1 class="heading-xlarge">
-         {{ pageTitle }}
+         {{ page_title }}
         </h1>
 
         <form method="post" novalidate>
@@ -65,7 +63,7 @@
                Enter your full name
              </span>
             {% endif %}
-            <input class="form-control {%- if errors["full-name"] %} form-control-error {% endif %}" id="full-name" type="text" name="full-name" value="{{ values['full-name'] }}">
+            <input class="form-control {%- if errors["full-name"] %} form-control-error {% endif %}" id="full-name" type="text" name="full-name" value="{{ values['full-name'] }}" autocomplete="name">
           </div>
 
           {% set dateInputDayClass = "govuk-input--width-2" %}
@@ -122,9 +120,4 @@
       </div>
     </div>
   </main>
-{% endblock %}
-
-{% block body_end %}
-  <script src="/public/all.js"></script>
-  <script>window.GOVUKFrontend.initAll()</script>
 {% endblock %}

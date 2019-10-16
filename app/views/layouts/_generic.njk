@@ -42,7 +42,13 @@
   {{ super() }}
 {% endblock %}
 
+{% set mainClasses = 'govuk-main-wrapper--auto-spacing' %}
+
 {% block bodyEnd %}
+  {% if legacy %}
+    {% include "partials/legacyJavaScript.njk" %}
+  {% endif %}
+
   <script src="/public/all.js"></script>
   <script>window.GOVUKFrontend.initAll()</script>
 {% endblock %}

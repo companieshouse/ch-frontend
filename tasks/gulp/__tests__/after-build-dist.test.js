@@ -5,7 +5,7 @@ const configPaths = require('../../../config/paths.json')
 const recursive = require('recursive-readdir')
 
 describe('dist/', () => {
-  let version = require(path.join('../../../', configPaths.package, 'package.json')).version
+  const version = require(path.join('../../../', configPaths.package, 'package.json')).version
 
   describe('assets/', () => {
     it('should include the same files as in src/assets', () => {
@@ -18,7 +18,7 @@ describe('dist/', () => {
           files => {
             return files
               // Remove /package prefix from filenames
-              .map(file => file.replace(/^src\/assets\//, ''))
+              .map(file => file.replace(/^src\/govuk\/assets\//, ''))
               // Sort to make comparison easier
               .sort()
           },
