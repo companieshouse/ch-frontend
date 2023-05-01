@@ -67,7 +67,7 @@
     "postcss-pseudo-classes": "^0.2.0",
     "postcss-scss": "^2.0.0",
     "puppeteer": "^1.14.0",
-    "recursive-readdir": "^2.2.2",
+    "recursive-readdir": "^2.2.3",
     "request": "^2.88.0",
     "sass-color-helpers": "^2.1.1",
     "sassdoc": "^2.6.0",
